@@ -10,16 +10,33 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        app:key="books_category"
+        app:title="Изберете категория">
+        <CheckBoxPreference
+            app:defaultValue="true"
+            app:icon="@drawable/ic_scientific"
+            app:key="scientific_literature"
+            app:title="Научна литература" />
+
+        <CheckBoxPreference
+            app:defaultValue="false"
+            app:icon="@drawable/ic_fiction"
+            app:key="fiction"
+            app:title="Художествена литература" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         app:key="help_category"
         app:title="Помощ">
         <Preference
             app:key="feedback"
-            app:summary="Докладвайте технически проблеми
-    или предлагайте нови функции"
+            app:summary="Докладвайте технически проблеми или предлагайте нови функции"
             app:title="Изпрати обратна връзка" />
 
-<!--                <EditTextPreference-->
-<!--                    app:key="signature"-->
-<!--                    app:title="Your signature"/>-->
+        <!--                        <EditTextPreference-->
+        <!--                            app:key="signature"-->
+        <!--                            app:title="Your signature"/>-->
     </PreferenceCategory>
+
 </PreferenceScreen>
