@@ -1,5 +1,6 @@
 package com.example.sharedpreferencesexample;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -14,7 +15,6 @@ import androidx.preference.CheckBoxPreference;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreferenceCompat;
 
 public class MySettingsFragment extends PreferenceFragmentCompat {
@@ -68,13 +68,16 @@ public class MySettingsFragment extends PreferenceFragmentCompat {
             });
         }
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        prefs.edit().putString("key_name", "SharedPreferences string").apply();
+        Context context = getActivity();
+        if (context != null) {
+            SharedPreferences prefs = context.getSharedPreferences(
+                    "preference_file_key", Context.MODE_PRIVATE);
+            prefs.edit().putString("key_name", "SharedPreferences string").apply();
 
-        SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        String name = sharedPreferences.getString("key_name", null);
-        Toast.makeText(getActivity().getApplicationContext(), name, Toast.LENGTH_LONG).show();
+            String name = prefs.getString("key_name", null);
+            Toast.makeText(context, name, Toast.LENGTH_LONG).show();
+        }
+
 
         super.onViewCreated(view, savedInstanceState);
     }
